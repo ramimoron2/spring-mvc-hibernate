@@ -22,6 +22,7 @@ import com.service.Mainservice;
 
 @Controller
 @ComponentScan("service")
+
 public class HomeController {
 
 	@Autowired
