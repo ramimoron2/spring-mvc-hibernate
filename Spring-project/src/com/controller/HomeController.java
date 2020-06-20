@@ -2,6 +2,7 @@ package com.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.transaction.Transactional;
@@ -28,31 +29,53 @@ public class HomeController {
 	@Autowired
 	Mainservice ser ;
 	
-	
-	
 	@Autowired
-	LocalSessionFactoryBean sessionFactory;
+	employeeDao empDao;
+	
+	
+	
 	
 	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/save", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		System.out.println("Home Page Requested, locale = " + locale);
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		ser.getStudent();
-		//save();
-		
-		String formattedDate = dateFormat.format(date);
+	
+	/*
+	 * @RequestMapping(value = "/", method = RequestMethod.GET) public String
+	 * home(Locale locale, Model model) {
+	 * System.out.println("Home Page Requested, locale = " + locale); Date date =
+	 * new Date(); DateFormat dateFormat =
+	 * DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	 * //ser.getStudent();
+	 * 
+	 * 
+	 * String formattedDate = dateFormat.format(date);
+	 * 
+	 * model.addAttribute("serverTime", formattedDate);
+	 * 
+	 * return "home"; }
+	 */
+	 
 
-		model.addAttribute("serverTime", formattedDate);
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
 
 		return "home";
 	}
+	
+	
+	@RequestMapping(value = "/showdata", method = RequestMethod.GET)
+	public String showdata(Locale locale, Model model) {
 
+		
+		List<Emp> allEmployees=empDao.getAll();
+		System.out.println("value="+ allEmployees.toString());
+		model.addAttribute("allemployees", allEmployees);
+		return "user";
+	}
+	
+	
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public String user(@Validated User user, Model model) {
 		System.out.println("User Page Requested");

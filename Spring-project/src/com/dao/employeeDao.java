@@ -2,6 +2,8 @@ package com.dao;
 
 
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -36,6 +38,12 @@ public class employeeDao {
 		
 		return "success";
 		
+	}
+	
+	public List<Emp> getAll()
+	{
+		List<Emp> allemployees=  sessionFactory.getObject().getCurrentSession().createQuery("FROM Emp").list();
+		return allemployees;
 	}
 	
 	

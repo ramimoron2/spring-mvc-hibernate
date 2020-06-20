@@ -11,6 +11,11 @@
 
 	<P>The time on the server is ${serverTime}.</p>
 
+	<form action="showdata" method="get">
+		<input type="submit" value="Click here to see the data">
+	</form>
+
+
 	<form action="user" method="post">
 		<input type="text" name="userName"><br> <input
 			type="submit" value="Login">
