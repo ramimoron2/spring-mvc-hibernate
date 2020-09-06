@@ -18,7 +18,7 @@ import com.model.Emp;
 
 @Repository
 @ComponentScan("configurations")
-@Transactional
+//@Transactional  // can be used here too to make trsaction class level
 public class employeeDao {
 
 	@Autowired
@@ -40,10 +40,29 @@ public class employeeDao {
 		
 	}
 	
+	
+	@Transactional
 	public List<Emp> getAll()
 	{
 		List<Emp> allemployees=  sessionFactory.getObject().getCurrentSession().createQuery("FROM Emp").list();
 		return allemployees;
+	}
+	
+	
+	
+	@Transactional
+	public String insertData(Emp employee)
+	{
+		
+		try
+		{
+		sessionFactory.getObject().getCurrentSession().save(employee);
+		}catch(Exception e)
+		{
+			return "faliure";
+		}
+		
+		return "success";
 	}
 	
 	

@@ -66,7 +66,7 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/showdata", method = RequestMethod.GET)
-	public String showdata(Locale locale, Model model) {
+	public String showdata( Model model) {
 
 		
 		List<Emp> allEmployees=empDao.getAll();
@@ -86,5 +86,14 @@ public class HomeController {
 	
 	
 
+	@RequestMapping(value = "/insertEmployee", method = RequestMethod.POST)
+	public String insertEmployee(@Validated Emp emp, Model model) {
+		System.out.println("User Page Requested");
+		System.out.println("employee=="+ emp.toString());
+		empDao.insertData(emp);
+		//model.addAttribute("userName", user.getUserName());
+		return "home";
+	}
+	
 	
 }
