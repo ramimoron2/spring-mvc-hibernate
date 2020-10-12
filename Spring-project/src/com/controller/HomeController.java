@@ -20,6 +20,7 @@ import com.dao.employeeDao;
 import com.model.Emp;
 import com.model.User;
 import com.service.Mainservice;
+import com.service.ResourceReader;
 
 @Controller
 @ComponentScan("service")
@@ -32,7 +33,8 @@ public class HomeController {
 	@Autowired
 	employeeDao empDao;
 	
-	
+	@Autowired
+	ResourceReader reader;
 	
 	
 	
@@ -61,6 +63,9 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
+		
+		
+		model.addAttribute("welcomeText",reader.DisplayText() );
 		return "home";
 	}
 	

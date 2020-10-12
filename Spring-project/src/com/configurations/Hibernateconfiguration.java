@@ -22,6 +22,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class Hibernateconfiguration {
 
 	
+	
+	
+	
+	
+	
+	
 	    @Bean
 	    public DataSource dataSource() {
 	    	DriverManagerDataSource basicdatasource= new DriverManagerDataSource();
@@ -78,13 +84,15 @@ public class Hibernateconfiguration {
 	 * template.setSessionFactory(factory); template.setCheckWriteOperations(false);
 	 * return template; }
 	 */
-	    @Bean
-	    @Autowired
-	    public HibernateTransactionManager getTransactionManager(LocalSessionFactoryBean localSessionfactory)
-	    {
-	    	HibernateTransactionManager hibernateTransactionManager = new HibernateTransactionManager();
-	    	hibernateTransactionManager.setSessionFactory(localSessionfactory.getObject());
-	    	return hibernateTransactionManager;
-	    }
-	    
+	
+	
+	@Bean
+
+	@Autowired
+	public HibernateTransactionManager getTransactionManager(LocalSessionFactoryBean localSessionfactory) {
+		HibernateTransactionManager hibernateTransactionManager = new HibernateTransactionManager();
+		hibernateTransactionManager.setSessionFactory(localSessionfactory.getObject());
+		return hibernateTransactionManager;
+	}
+
 }
