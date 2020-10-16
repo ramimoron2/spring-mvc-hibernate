@@ -8,6 +8,7 @@ import java.util.Locale;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.configurations.PropertyConfigurations;
 import com.dao.employeeDao;
+import com.model.Answer1;
 import com.model.Emp;
+import com.model.Question1;
 import com.model.User;
 import com.service.Mainservice;
-import com.service.ResourceReader;
+//import com.service.ResourceReader;
 
 @Controller
 @ComponentScan("service")
@@ -34,7 +38,11 @@ public class HomeController {
 	employeeDao empDao;
 	
 	@Autowired
-	ResourceReader reader;
+	PropertyConfigurations propertyConfigurations;
+	
+	/*
+	 * @Autowired ResourceReader reader;
+	 */
 	
 	
 	
@@ -65,7 +73,8 @@ public class HomeController {
 
 		
 		
-		model.addAttribute("welcomeText",reader.DisplayText() );
+		//model.addAttribute("welcomeText",reader.DisplayText() );
+		model.addAttribute("welcomeText","himanshu" );
 		return "home";
 	}
 	
@@ -98,6 +107,33 @@ public class HomeController {
 		empDao.insertData(emp);
 		//model.addAttribute("userName", user.getUserName());
 		return "home";
+	}
+	
+	@RequestMapping(value = "/insertQuestion1", method = RequestMethod.GET)
+	public String addQuestion()
+	{
+		
+		Question1 question= new Question1();
+		question.setId("10");
+		question.setQuestion("yes man what up");
+		Answer1 ans= new Answer1();
+		ans.setId("10");
+		ans.setAnswer("bal");
+		ans.setAnswerBY("himu");
+		question.setAnswer(ans);
+		return empDao.addQuestions1(question);
+	}
+	
+	
+	
+	@RequestMapping(value = "/displayProperty", method = RequestMethod.GET)
+	public String displayProperty()
+	{
+		
+		System.out.println("value=====" + propertyConfigurations.getName());
+		
+		return propertyConfigurations.getName();
+		
 	}
 	
 	

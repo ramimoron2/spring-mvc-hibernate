@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.model.Emp;
+import com.model.Question1;
 
 
 @Repository
@@ -63,6 +64,16 @@ public class employeeDao {
 		}
 		
 		return "success";
+	}
+	
+	@Transactional
+	public String addQuestions1(Question1 question)
+	{
+		
+		
+		sessionFactory.getObject().getCurrentSession().save(question);
+		
+		return "sucess";
 	}
 	
 	
