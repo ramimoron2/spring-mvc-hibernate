@@ -13,11 +13,34 @@
        		<param-value>/WEB-INF/spring-servlet.xml</param-value>
     		</init-param>
         <load-on-startup>1</load-on-startup>
+        
+        <!-- Add Spring MVC DispatcherServlet as front controller for rest api -->
     </servlet>
+    
+    
+    	<servlet>
+        <servlet-name>spring-restapi</servlet-name>
+        <servlet-class>
+                org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <init-param>
+       		<param-name>contextConfigLocation</param-name>
+       		<param-value>/WEB-INF/spring-rest-servlet.xml</param-value>
+    		</init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    
  
     <servlet-mapping>
         <servlet-name>spring</servlet-name>
-        <url-pattern>/</url-pattern> 
+        <url-pattern>/jsp-servlet/*</url-pattern> 
     </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>spring-restapi</servlet-name>
+        <url-pattern>/rest-servlet/*</url-pattern> 
+    </servlet-mapping>
+    
     
  </web-app>

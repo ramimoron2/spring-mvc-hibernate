@@ -23,6 +23,7 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.*;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.ViewResolver;
 
 @Configuration
 @EnableTransactionManagement
@@ -122,5 +123,10 @@ public class Hibernateconfiguration {
 	}
 	
 	
+	
+	/*
+	 * @Bean public ViewResolver jsonViewResolver() { return new JsonViewResolver();
+	 * }
+	 */
 
 }
